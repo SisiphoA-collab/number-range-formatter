@@ -33,7 +33,10 @@ public class NumberRangeSummarizerImpl implements NumberRangeSummarizer {
             return "";
         }
 
+        // Ensure input is sorted
         List<Integer> numbers = new ArrayList<>(input);
+        numbers.sort(Integer::compareTo);
+
         List<String> result = new ArrayList<>();
         
         int start = numbers.get(0);
@@ -61,6 +64,7 @@ public class NumberRangeSummarizerImpl implements NumberRangeSummarizer {
             result.add(start + "-" + prev);
         }
         
-        return String.join(", ", result);
+        // Join without spaces (fix for tests)
+        return String.join(",", result);
     }
 }
